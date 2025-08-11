@@ -1,0 +1,142 @@
+{
+  "basics": {
+    "name": "Nahuel Enoc Gerez Peña",
+    "label": "Desarrollador Web",
+    "image": "/my.png",
+    "email": "gerez7120@gmail.com",
+    "phone": "+54 9 3572 666040",
+    "url": "https://nahueldev.online",
+    "summary": "Soy Desarrollador Web, con formación técnica como Técnico Electromecánico y una sólida base en desarrollo web full-stack. Me especializo en tecnologías modernas como React, Angular, NodeJS, MySQL, aplicadas en proyectos personales y académicos. Poseo fuertes habilidades analíticas y una clara orientación hacia la resolución de problemas, complementadas con conocimientos en visualización de datos utilizando Power BI y Excel. Mi objetivo es integrarme en un equipo dinámico donde pueda aportar valor con mis conocimientos técnicos, continuar aprendiendo y ganar experiencia profesional en el ámbito del software y la gestión de datos.",
+    "location": {
+      "address": "",
+      "postalCode": "",
+      "city": "",
+      "countryCode": "",
+      "region": ""
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "nahuel-gerez-6927b0239",
+        "url": "https://linkedin.com/in/nahuel-gerez-6927b0239"
+      },
+      {
+        "network": "GitHub",
+        "username": "NanoCode2022",
+        "url": "https://github.com/NanoCode2022"
+      },
+      {
+        "network": "Instagram",
+        "username": "nanogerez_",
+        "url": "https://instagram.com/nanogerez_"
+      },
+      {
+        "network": "CV",
+        "username": "Nahuel Gerez",
+        "url": "/nahuel_gerez-cv.pdf"
+      }
+    ]
+  },
+  "work": [],
+  "education": [
+    {
+      "institution": "Universidad Tecnológica Nacional – Facultad Regional Córdoba",
+      "url": "",
+      "area": "Ingeniería en Sistemas de Información",
+      "studyType": "",
+      "startDate": "2025-01-01",
+      "endDate": "",
+      "score": "",
+      "courses": []
+    },
+    {
+      "institution": "Escuela Secundaria Técnica Juan Enrique Muller – Oncativo, Córdoba",
+      "url": "",
+      "area": "Técnico Electromecánico",
+      "studyType": "",
+      "startDate": "2018-01-01",
+      "endDate": "2024-12-31",
+      "score": "",
+      "courses": []
+    }
+  ],
+  "awards": [
+    {
+      "title": "Desarrollo Web",
+      "date": "",
+      "awarder": "CoderHouse",
+      "summary": "Curso de 3 meses de desarrollo web."
+    },
+    {
+      "title": "JavaScript",
+      "date": "",
+      "awarder": "CoderHouse",
+      "summary": "Curso de 3 meses de JavaScript."
+    },
+    {
+      "title": "Desarrollo Full-Stack",
+      "date": "",
+      "awarder": "Argentina Programa",
+      "summary": "Curso de 7 meses de desarrollo full-stack. Finalización estimada: Octubre 2024."
+    }
+  ],
+  "skills": [
+    {
+      "name": "Lenguajes y frameworks",
+      "level": "",
+      "keywords": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "TypeScript",
+        "ReactJS",
+        "Angular",
+        "NodeJS"
+      ]
+    },
+    {
+      "name": "Bases de datos",
+      "level": "",
+      "keywords": ["MySQL", "Supabase"]
+    },
+    {
+      "name": "Herramientas",
+      "level": "",
+      "keywords": ["Git", "GitHub"]
+    },
+    {
+      "name": "Análisis de datos",
+      "level": "",
+      "keywords": ["Excel", "Power BI"]
+    },
+    {
+      "name": "Otros",
+      "level": "",
+      "keywords": [
+        "Desarrollo de APIs REST",
+        "Integración frontend-backend",
+        "Diseño responsive"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Español",
+      "fluency": "Nativo"
+    },
+    {
+      "language": "Inglés",
+      "fluency": "Pre-Intermediate A2"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Portfolio personal",
+      "startDate": "",
+      "endDate": "",
+      "description": "Desarrollo y despliegue de sitio web profesional.",
+      "highlights": [],
+      "url": "https://nahueldev.online"
+    }
+  ]
+}

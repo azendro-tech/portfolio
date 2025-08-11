@@ -1,0 +1,31 @@
+---
+import AwardCard from './sub/AwardCard.astro';
+const awards = Astro.props.awards;
+
+---
+<div class="">
+  <button onclick="toggleAccordion(5)" class="w-full flex justify-between items-center py-5 text-black dark:text-white">
+    <span class="text-2xl font-bold">Cursos/Certificados</span>
+      <span>
+          <svg id="icon-svg-5" xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4 transition-transform duration-300"
+            fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z"
+              clip-rule="evenodd" />
+          </svg>
+        </span>
+      </button>
+      <div id="content-5" class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+        <div class="pb-5 text-sm text-dark dark:text-white flex flex-col gap-4">
+ 
+            {
+              awards.map(award => (
+                 <AwardCard title={award.title} name={award.name} date={award.date} awarder={award.awarder} issuer={award.issuer} summary={award.summary} url={award.url}/>
+              ))
+            }
+        </div>
+
+      </div>
+    </div>
+ 

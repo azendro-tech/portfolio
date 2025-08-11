@@ -1,0 +1,28 @@
+---
+import SocialButtons from './sub/SocialButtons.astro'
+const basics = Astro.props.basics;
+
+---
+<section class="flex flex-col border-b-3 border-black dark:border-white pt-10">
+  <div class="flex flex-col w-full justify-around items-center">
+    <div>
+<span class="block w-40 h-40 max-lg:w-30 max-lg:h-30 rounded-full overflow-hidden border-2 border-black dark:border-white">
+  <img
+    src={basics.image}
+    alt="Photo Person"
+    class="w-full h-full object-cover scale-100"
+  />
+</span>
+    </div>
+    <div>
+      <span>
+        <p class='text-center text-dark dark:text-white text-4xl'>{basics.name}</p>
+      </span>
+    </div>
+  </div>
+  <div class="flex flex-row justify-center my-8">
+<SocialButtons profiles={basics.profiles}/>
+  </div>
+
+</section>
+

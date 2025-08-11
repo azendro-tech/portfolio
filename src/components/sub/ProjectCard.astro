@@ -1,0 +1,163 @@
+---
+import { 
+  getProjectStatus, 
+  extractDomain, 
+  isAward, 
+  getProjectType, 
+  formatDateRange, 
+  calculateDuration 
+} from '../../utils/helpers.js';
+
+const project = Astro.props
+---
+<!-- Projects Card - Astro Component -->
+<a href={project.url || "javascript:void(0)"} target={project.url ? "_blank" : undefined} rel={project.url ? "noopener noreferrer" : undefined}>
+  <div class="relative flex shadow-sm border border-black dark:border-white rounded-xl overflow-hidden ">
+    
+    <!-- Left Content Section -->
+    <div class="flex-1 p-6">
+      <!-- Project Status Badge -->
+      <div class="mb-4 inline-block rounded-full bg-black dark:bg-white py-1 px-3 border border-transparent text-xs text-white dark:text-black transition-all shadow-sm uppercase tracking-wide">
+        {getProjectStatus(project.startDate, project.endDate)}
+      </div>
+      
+      <!-- Project Name and URL -->
+      <div class="flex items-start justify-between mb-4">
+        <div class="flex-1">
+          <h3 class="text-2xl font-bold text-black dark:text-white mb-2">
+            {project.name}
+          </h3>
+          {project.url && (
+            <div class="flex items-center mb-3">
+              <div class="flex items-center text-black dark:text-white">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                </svg>
+                <span class="text-sm">{extractDomain(project.url)}</span>
+              </div>
+              <svg class="w-4 h-4 ml-2 text-black dark:text-white " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+              </svg>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <!-- Project Description -->
+      {project.description && (
+        <p class="text-black dark:text-white leading-relaxed font-light mb-4 text-base">
+          {project.description}
+        </p>
+      )}
+
+      <!-- Tech Stack (opcional - puedes agregar al JSON) -->
+      {project.technologies && project.technologies.length > 0 && (
+        <div class="mb-4">
+          <h4 class="text-sm font-semibold text-black dark:text-white mb-3 uppercase tracking-wide flex items-center">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+            </svg>
+            Tecnologías
+          </h4>
+          <div class="flex flex-wrap gap-2">
+            {project.technologies.map((tech) => (
+               <span class="inline-block bg-white dark:bg-black text-black dark:text-white text-xs px-3 py-1 rounded-full font-medium">{tech}</span>            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Highlights -->
+      {project.highlights && project.highlights.length > 0 && (
+        <div class="mb-4">
+          <h4 class="text-sm font-semibold  text-black dark:text-white mb-3 uppercase tracking-wide flex items-center">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+            </svg>
+            Logros Destacados
+          </h4>
+          <ul class="grid grid-cols-1 gap-2">
+            {project.highlights.map((highlight) => (
+              <li class="flex items-start space-x-3 text-sm text-black dark:text-white rounded-lg p-3 border border-black dark:border-white">
+                 <div class="w-2 h-2 rounded-full bg-black dark:bg-white mt-2 flex-shrink-0"></div>                <div class="flex items-center space-x-2">
+                  {isAward(highlight) && (
+                    <svg class="w-4 h-4 text-black dark:text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                  )}
+                  <span class="leading-relaxed font-medium">{highlight}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      <!-- Project Info -->
+      <div class="flex items-center mb-6">
+        <div class="w-12 h-12 bg-black dark:bg-white rounded-xl flex items-center justify-center shadow-lg">
+          <svg class="w-6 h-6 text-white dark:text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+          </svg>
+        </div>
+        <div class="flex flex-col ml-4">
+          <span class="text-black dark:text-white font-bold text-sm uppercase tracking-wide">
+            Proyecto
+          </span>
+          <span class="text-black dark:text-white font-medium">
+            {formatDateRange(project.startDate, project.endDate)}
+          </span>
+          <span class="text-xs text-black dark:text-white mt-1">
+            {calculateDuration(project.startDate, project.endDate)}
+          </span>
+        </div>
+      </div>
+
+
+      <!-- Project Stats -->
+      <div class="space-y-3 mb-6">
+        <div class="flex items-center justify-between p-3 bg-white/50 dark:bg-black/50 rounded-lg border border-black/20 dark:border-white/20">
+          <div class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-black dark:text-white mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            <span class="text-black dark:text-white">Estado</span>
+          </div>
+          <span class="text-black dark:text-white font-semibold text-sm">
+            {project.endDate ? 'Finalizado' : 'En desarrollo'}
+          </span>
+        </div>
+        
+        <div class="flex items-center justify-between p-3 bg-white/50 dark:bg-black/50 rounded-lg border border-black/20 dark:border-white/20">
+          <div class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-black dark:text-white mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a4 4 0 118 0v4M3 7h18l-2 13H5L3 7z"></path>
+            </svg>
+            <span class="text-black dark:text-white">Tipo</span>
+          </div>
+          <span class="text-black dark:text-white font-semibold text-sm">
+            {getProjectType(project.name, project.description)}
+          </span>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      {project.url && (
+        <div class="space-y-2">
+            <button class="w-full bg-white/60 dark:bg-black/60 hover:bg-white/80 dark:hover:bg-black/80 text-black dark:text-white text-sm py-2 px-4 rounded-lg border border-black/40 dark:border-white/40 transition-colors flex items-center justify-center space-x-2">            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+            </svg>
+            <span>Ver Proyecto</span>
+          </button>
+          {project.github && (
+          <button class="w-full bg-white/60 dark:bg-black/60 hover:bg-white/80 dark:hover:bg-black/80 text-black dark:text-white text-sm py-2 px-4 rounded-lg border border-black/40 dark:border-white/40 transition-colors flex items-center justify-center space-x-2">              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span>GitHub</span>
+            </button>
+          )}
+        </div>
+      )}
+
+    </div>
+  </div>
+</a>
+

@@ -1,0 +1,81 @@
+---
+// SocialButtons.astro
+interface Profile {
+  network: "Instagram" | "Twitter" | "GitHub" | "YouTube" | "LinkedIn" | "Telegram" | "CV";
+  username: string;
+  url: string;
+}
+
+export interface Props {
+  profiles: Profile[];
+}
+
+const { profiles } = Astro.props;
+
+const icons = {
+  Twitter: "/icons/twitter.svg",
+  Instagram: "/icons/instagram.svg",
+  GitHub: "/icons/github.svg",
+  YouTube: "/icons/youtube.svg",
+  LinkedIn: "/icons/linkedin.svg",
+  CV: "/icons/cv.svg",
+};
+---
+
+<div class="button-container">
+  {profiles.map((profile) => (
+    <a
+      href={profile.url}
+      class="button flex-center"
+      target="_blank"
+      rel="noopener noreferrer"
+      title={profile.network}
+    >
+      <img src={icons[profile.network]} alt={profile.network} class="btn-svg" width="22" height="22" />
+    </a>
+  ))}
+</div>
+
+<style>
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .button {
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #2d2e32;
+    border: 2px solid #2d2e32;
+    transition: all 0.45s;
+  }
+
+  .button:hover {
+    transform: rotate(360deg);
+    transform-origin: center center;
+    background-color: #fff;
+    color: #2d2e32;
+  }
+
+  .button:hover .btn-svg {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(305deg)
+      brightness(103%) contrast(103%);
+  }
+
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn-svg {
+    width: 22px;
+    height: 22px;
+  }
+</style>

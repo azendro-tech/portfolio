@@ -1,11 +1,52 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Container from '../layouts/Container.astro';
+import Profile from '../components/Profile.astro';
+import About from '../components/About.astro';
+import Work from '../components/Work.astro';
+import Education from '../components/Education.astro';
+import Project from '../components/Project.astro'
+import Awards from '../components/Awards.astro';
+import SkillsLanguages from '../components/SkillsLanguages.astro';
+import '../layouts/global.css'
+import data from '../data/data.json'
 ---
-
 <Layout>
-	<Welcome />
+  <Container>
+    <Profile basics={data.basics}/>
+    <About about={data.basics.summary}/>
+    <Work work={data.work}/>
+    <Education education={data.education}/>
+    <Project projects={data.projects}/>
+    <Awards awards={data.awards}/>
+    <SkillsLanguages skills={data.skills} languages={data.languages}/>
+ </Container>
 </Layout>
+
+<script>
+window.toggleAccordion = function(index) {
+  const content = document.getElementById(`content-${index}`);
+  const icon = document.getElementById(`icon-svg-${index}`);
+  
+  // Verificar si está abierto usando la clase rotate-180 del ícono como referencia
+  const isOpen = icon.classList.contains('rotate-180');
+  
+  if (isOpen) {
+    // Cerrar el acordeón
+    content.style.maxHeight = '0px';
+    icon.classList.remove('rotate-180');
+  } else {
+    // Abrir el acordeón
+    content.style.maxHeight = content.scrollHeight + 'px';
+    icon.classList.add('rotate-180');
+  }
+  
+  // Limpiar maxHeight después de la transición para permitir contenido dinámico
+  content.addEventListener('transitionend', function handler() {
+    if (!isOpen) { // Si acabamos de abrir
+      content.style.maxHeight = 'none'; // Permitir crecimiento dinámico
+    }
+    content.removeEventListener('transitionend', handler);
+  }, { once: true });
+};
+</script>
