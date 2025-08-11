@@ -44,7 +44,7 @@
       "url": "",
       "area": "Ingeniería en Sistemas de Información",
       "studyType": "",
-      "startDate": "2025-01-01",
+      "startDate": "2025-03-01",
       "endDate": "",
       "score": "",
       "courses": []
@@ -56,26 +56,26 @@
       "studyType": "",
       "startDate": "2018-01-01",
       "endDate": "2024-12-31",
-      "score": "",
+      "score": "9.26",
       "courses": []
     }
   ],
   "awards": [
     {
       "title": "Desarrollo Web",
-      "date": "",
+      "date": "2020-11-01",
       "awarder": "CoderHouse",
       "summary": "Curso de 3 meses de desarrollo web."
     },
     {
       "title": "JavaScript",
-      "date": "",
+      "date": "2021-03-01",
       "awarder": "CoderHouse",
       "summary": "Curso de 3 meses de JavaScript."
     },
     {
       "title": "Desarrollo Full-Stack",
-      "date": "",
+      "date": "2021-06-01",
       "awarder": "Argentina Programa",
       "summary": "Curso de 7 meses de desarrollo full-stack. Finalización estimada: Octubre 2024."
     }
